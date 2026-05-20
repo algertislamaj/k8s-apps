@@ -1,0 +1,18 @@
+gitlab:
+  global:
+    hosts:
+      domain: local
+      https: false
+    ingress:
+      configureCertmanager: false
+      class: nginx
+      tls:
+        enabled: false
+  certmanager:
+    install: false
+  nginx-ingress:
+    enabled: false
+  prometheus:
+    install: false
+  gitlab-runner:
+    install: false
