@@ -16,3 +16,5 @@ gitlab:
     install: false
   gitlab-runner:
     install: false
+  upgradeCheck:
+    enabled: false
