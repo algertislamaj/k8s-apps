@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: YOUR_DOCKERHUB_USERNAME/vm-manager-backend:latest
+          image: algertislamaj/vm-manager-backend:latest
           imagePullPolicy: Always   # critical for 'latest' to work
           ports:
             - containerPort: 8080
