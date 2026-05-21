@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: vm-manager
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/algertislamaj/k8s-apps
+    targetRevision: HEAD
+    path: k8s/vm-manager/k8s
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: vm-manager
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

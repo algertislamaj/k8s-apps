@@ -4,7 +4,7 @@ export default function App() {
   const [message, setMessage] = useState("")
 
   const handleClick = async () => {
-    const res = await fetch("http://localhost:8080/api/hello")
+    const res = await fetch("/api/hello")
     const data = await res.json()
     setMessage(data.message)
   }

@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vm-manager-backend
+  namespace: vm-manager
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vm-manager-backend
+  template:
+    metadata:
+      labels:
+        app: vm-manager-backend
+    spec:
+      containers:
+        - name: backend
+          image: YOUR_DOCKERHUB_USERNAME/vm-manager-backend:latest
+          imagePullPolicy: Always   # critical for 'latest' to work
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vm-manager-backend
+  namespace: vm-manager
+spec:
+  selector:
+    app: vm-manager-backend
+  ports:
+    - port: 8080
+      targetPort: 8080
