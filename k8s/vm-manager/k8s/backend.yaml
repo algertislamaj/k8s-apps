@@ -13,12 +13,21 @@ spec:
       labels:
         app: vm-manager-backend
     spec:
+      serviceAccountName: vm-manager-backend
       containers:
         - name: backend
           image: algertislamaj/vm-manager-backend:latest
-          imagePullPolicy: Always   # critical for 'latest' to work
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
+          env:
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          envFrom:
+            - secretRef:
+                name: vm-manager-postgres-secret
 ---
 apiVersion: v1
 kind: Service
