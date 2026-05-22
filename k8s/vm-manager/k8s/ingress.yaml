@@ -5,20 +5,12 @@ metadata:
   namespace: vm-manager
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
   rules:
   - host: vm-manager.local
     http:
       paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: vm-manager-frontend
-            port:
-              number: 80
       - path: /api
         pathType: Prefix
         backend:
@@ -26,3 +18,10 @@ spec:
             name: vm-manager-backend
             port:
               number: 8080
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: vm-manager-frontend
+            port:
+              number: 80
